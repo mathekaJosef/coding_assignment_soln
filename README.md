@@ -10,4 +10,5 @@
 > ### 2. The cloned/downloaded coding_assignment_soln folder will have two files:
 > ``` problem1_soln.html ```
 > ``` problem2_soln.html ```
-> ### 3. The ``` problem1_soln.html ```
+> ### 3. ``` problem1_soln.html ``` file when clicked, will open on your default browser. It will also prompt you to ``` Key in the no of Jobs ```, ``` Key in job start time ```, ``` Key in job end time ``` and ``` Key in job earnings ``` respectively, and according to the number of jobs you have inserted.
+> ### 4. After clicking OK button on final prompt, final results will render/display on the browser.
