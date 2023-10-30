@@ -4,5 +4,4 @@
 > ####   To clone, run this command:
 > ```
 file-name-with-dashes.en.min.html
-```
 > ### 2. The cloned/downloaded coding_assignment_soln folder will have two .html
