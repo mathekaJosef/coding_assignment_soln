@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem 2</title>
+</head>
+<body>
+    <div>
+        <h2>Problem 2</h2>
+    </div>
+    <script>
+        // HR goodies
+        var hrGoodies = [
+            "Fitbit Plus: 7980",
+            "IPods: 22349",
+            "MI Band: 999",
+            "Cult Pass: 2799",
+            "Macbook Pro: 229900",
+            "Digital Camera: 11101",
+            "Alexa: 9999",
+            "Sandwich Toaster: 2195",
+            "Microwave Oven: 9800",
+            "Scale: 4999",
+        ];
+        
+        var employees = 6; // Employees / the value can be changed
+
+        var minDifference = Infinity; // variables for checking minimum difference and the index of the starting goodie
+        var startIndex = 0;
+
+        function minimumHRGoodiespriceDifference(hrGoodies, employees) {
+            var goodies = hrGoodies.map((perGoodie) => {
+              var [item, goodiePrice] = perGoodie.split(": ");
+              return { item, goodiePrice: parseInt(goodiePrice) };
+            }); // Parsing hrGoodies content/data
+          
+            goodies.sort((x, y) => x.goodiePrice - y.goodiePrice); // Arrange the goodies in ascending sort
+          
+            for (var i = 0; i <= goodies.length - employees; i++) {
+              var difference = goodies[i + employees - 1].goodiePrice - goodies[i].goodiePrice;
+              if (difference < minDifference) {
+                minDifference = difference;
+                startIndex = i;
+              }
+            } // Finding minimum goodiePrice difference through looping through ascending goodies
+          
+            var goodiesPicked = goodies.slice(startIndex, startIndex + employees); // pick employees corresponding goodies with minimum price difference
+          
+            // final result
+            var final = {
+              goodies: goodiesPicked.map((item) => `${item.item}: ${item.goodiePrice}`),
+              difference: minDifference,
+            };
+          
+            return final;
+          }
+          
+          // Writing final result to .txt file (sample_output.txt)
+          var final = minimumHRGoodiespriceDifference(hrGoodies, employees);
+          var items = [];
+          final.goodies.forEach(
+            (item) => items.push(item)
+          );
+
+          writeToOutputFile = (text, fileName) => {
+            let textFile = null;
+            makeTextFile = (text) => {
+              data = new Blob([text], {
+                type: 'text/plain',
+              });
+              if (textFile !== null) {
+                window.URL.revokeObjectURL(textFile);
+              }
+              textFile = window.URL.createObjectURL(data);
+              return textFile;
+            };
+            link = document.createElement('a');
+            link.setAttribute('download', fileName);
+            link.href = makeTextFile(text);
+            link.click();
+          };
+          
+          data = `
+            The goodies selected for distribution are:\n
+            ${items}\n
+            And the difference between the chosen goodie with highest price and the lowest price is ${final.difference}
+          `;
+          writeToOutputFile(data, 'sample_input.txt');
+    </script>
+</body>
+</html>

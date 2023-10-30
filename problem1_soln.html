@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem 1</title>
+</head>
+<body>
+    <div>
+        <h2>Code Assignment - Problem 1 Solution</h2><br>
+        <h4 id="title"></h4>
+        <h4 id="task"></h4>
+        <h4 id="earnings"></h4>
+    </div>
+    <script>
+        function maxEarnings() {
+            const n = Number(prompt("Key in the no of Jobs")); // Read the no of jobs
+            
+            const jobs = []; // Initiate an array to store jobs
+
+            for (let i = 0; i < n; i++) {
+              const startTime = Number(prompt("Key in job start time"));
+              const endTime = Number(prompt("Key in job end time"));
+              const profit = Number(prompt("Key in job earnings"));
+              jobs.push({ startTime, endTime, profit });
+            } // Read job details and fill the jobs array
+          
+            jobs.sort((a, b) => a.endTime - b.endTime); // Sort the jobs by end times in ascending order
+          
+            let totalEarnings = 0;
+            let remainingJobs = n; // Initiate variables to track earnings and remaining jobs
+          
+            let currentEndTime = 0; // Initiate current end time as 0
+          
+            for (const job of jobs) {
+              if (job.startTime >= currentEndTime) {
+                totalEarnings += job.profit;
+                currentEndTime = job.endTime;
+                remainingJobs--;
+              }
+            } // loop through the jobs
+
+            document.getElementById('title').innerHTML = "The no of tasks and earnings for other employees";
+            document.getElementById('task').innerHTML = `Task: ${remainingJobs}`;
+            document.getElementById('earnings').innerHTML = `Earnings: ${totalEarnings}`;// Print the result
+          }
+          maxEarnings();
+    </script>
+</body>
+</html>
